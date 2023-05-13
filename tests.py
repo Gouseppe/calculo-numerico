@@ -1,15 +1,20 @@
 from biseccion import biseccion
+from algoritmo_newton_raphson import algoritmoNR
 import unittest
-
+import sympy as sp
 import math
 
 def funcion1(x):
     return math.atan(x) + x -1
-
 def funcion2(x):
     return math.exp(-x) - math.log(x)
 
-class TestBiseccion(unittest.TestCase):
+# expresiones simbolicas
+x = sp.Symbol('x')  # Definimos la variable simbólica x
+# defino una expresion simbolica en terminos de x
+expr1 = sp.exp(x) - (3 * x ** 2)
+expr2 = sp.sin(x) - sp.exp(-x)
+class Tests(unittest.TestCase):
 
     def test1_biseccion_resultado(self):
         
@@ -46,12 +51,12 @@ class TestBiseccion(unittest.TestCase):
             biseccion(5,1,funcion2, min, maxIteracion)
 
         with self.assertRaises(ValueError) as min_error_exc:
-            # biseccion(a,b,funcion2, 'hola', maxIteracion)
+            # calculo_numerico(a,b,funcion2, 'hola', maxIteracion)
             biseccion(a,b,funcion2, 2, maxIteracion)
             
         with self.assertRaises(ValueError) as max_iteration_exc:
-            # biseccion(a,b,funcion2, 0.5, 0)
-            # biseccion(a,b,funcion2, 0.5, 201)           
+            # calculo_numerico(a,b,funcion2, 0.5, 0)
+            # calculo_numerico(a,b,funcion2, 0.5, 201)
             biseccion(a,b,funcion2, 0.5, 'hola')
         
         with self.assertRaises(TypeError) as f_exc:
@@ -64,3 +69,14 @@ class TestBiseccion(unittest.TestCase):
         self.assertEqual(str(max_iteration_exc.exception), 'maxIteracion debe ser tipo entero y no puede superar las 200 iteracoines o ser menor que 1')
         self.assertEqual(str(f_exc.exception), 'f no es una funcion')
 
+    def test1_algoritmoNR_resultado(self):
+        resultadoEsperado = 0.0009
+        resultado = algoritmoNR(expr1, 0.7, x, 0.02, 20)
+
+        self.assertAlmostEqual(resultadoEsperado, resultado, places=4)
+
+    def test2_algoritmoNR_resultado(self):
+        resultadoEsperado = 0.0049
+        resultado = algoritmoNR(expr2, 0.5, x, 0.02, 20)
+
+        self.assertAlmostEqual(resultadoEsperado, resultado, places=4)

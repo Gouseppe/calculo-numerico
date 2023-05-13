@@ -1,9 +1,7 @@
 import math
 
-
-
 def biseccion(a,b,f,minError,maxIteracion):
-    
+
     # revisa las excepciones posibles
     if not isinstance(a, (int,float)):
         raise ValueError('a debe ser un tipo real')
@@ -29,19 +27,20 @@ def biseccion(a,b,f,minError,maxIteracion):
         mAc = (a+b)/2
         fa = f(a)
         fm = f(mAc)
-        
+
         if( fa*fm >= 0 ):
-            a = mAc 
+            a = mAc
         else:
-            b = mAc   
+            b = mAc
         if(i != 0):
             errorRelativo =  abs((mAc - mAn)/ mAc)
 
-        mAn = mAc 
+        mAn = mAc
         i += 1
-    
-    return  mAc if  errorRelativo <= minError else None
-              
+    return mAc if errorRelativo <= minError else None
 
 
-
+def funcion2(x):
+    return math.sin(x) - math.exp(-x)
+def funcion(x):
+    return math.exp(x) - (3*(x**2))
