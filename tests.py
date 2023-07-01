@@ -1,7 +1,8 @@
+import sympy as sp
 from biseccion import biseccion
 from algoritmo_newton_raphson import algoritmoNR
 import unittest
-import sympy as sp
+
 import math
 
 def funcion1(x):
