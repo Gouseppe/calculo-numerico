@@ -40,7 +40,7 @@ def biseccion(a,b,f,minError,maxIteracion):
     return mAc if errorRelativo <= minError else None
 
 
-def funcion2(x):
-    return math.sin(x) - math.exp(-x)
-def funcion(x):
-    return math.exp(x) - (3*(x**2))
+# def funcion2(x):
+#     return math.sin(x) - math.exp(-x)
+# def funcion(x):
+#     return math.exp(x) - (3*(x**2))

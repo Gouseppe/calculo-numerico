@@ -22,9 +22,9 @@ def algoritmoNR(expr, valor, simbolo, minError, maxRepeticiones):
     return error
 
 
-if __name__ == '__main__':
-    x = sp.Symbol('x')
-    expr = (x-2)**2 - sp.ln(x)
-    print(expr)
-    exprDerivada = expr.diff(x)
-    print(exprDerivada)
+# if __name__ == '__main__':
+#     x = sp.Symbol('x')
+#     expr = (x-2)**2 - sp.ln(x)
+#     print(expr)
+#     exprDerivada = expr.diff(x)
+#     print(exprDerivada)

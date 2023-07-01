@@ -1,6 +1,7 @@
 import sympy as sp
 from biseccion import biseccion
 from algoritmo_newton_raphson import algoritmoNR
+from suma_riemann import integrar
 import unittest
 
 import math
@@ -81,3 +82,14 @@ class Tests(unittest.TestCase):
         resultado = algoritmoNR(expr2, 0.5, x, 0.02, 20)
 
         self.assertAlmostEqual(resultadoEsperado, resultado, places=4)
+
+    def test1_suma_riemann(self):
+        resultadoEsperado = 0.3818
+        resultado = integrar(lambda x: x * sp.cos(x),0,1,5000)
+        self.assertAlmostEqual(resultadoEsperado,resultado, places=4)
+        
+    def test2_suma_riemann(self):
+        resultadoEsperado = 0.4207
+        resultado = integrar(lambda x: x * sp.cos(x**2),0,1,20000)
+        self.assertAlmostEqual(resultadoEsperado,resultado, places=4)
+        
