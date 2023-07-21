@@ -1,7 +1,9 @@
 import sympy as sp
 from biseccion import biseccion
 from algoritmo_newton_raphson import algoritmoNR
-from suma_riemann import integrar
+from integracion_numerica import suma_riemann
+from integracion_numerica import metodo_del_trapecio
+from ecuaciones_diferenciales import euler
 import unittest
 
 import math
@@ -80,16 +82,20 @@ class Tests(unittest.TestCase):
     def test2_algoritmoNR_resultado(self):
         resultadoEsperado = 0.0049
         resultado = algoritmoNR(expr2, 0.5, x, 0.02, 20)
-
         self.assertAlmostEqual(resultadoEsperado, resultado, places=4)
 
     def test1_suma_riemann(self):
-        resultadoEsperado = 0.3818
-        resultado = integrar(lambda x: x * sp.cos(x),0,1,5000)
+        resultadoEsperado = 0.4315
+        resultado = suma_riemann(lambda x: x * sp.cos(x),0,1,5)
         self.assertAlmostEqual(resultadoEsperado,resultado, places=4)
         
     def test2_suma_riemann(self):
-        resultadoEsperado = 0.4207
-        resultado = integrar(lambda x: x * sp.cos(x**2),0,1,20000)
+        resultadoEsperado = 0.4676
+        resultado = suma_riemann(lambda x: x * sp.cos(x**2),0,1,5)
         self.assertAlmostEqual(resultadoEsperado,resultado, places=4)
+    def test1_euler(self):
+        resultadoEsperado = 2.8508
+        resultado = euler(lambda t, y: 1 + (t-y)**2, 2, 3, 1, 4)   
+        self.assertAlmostEqual(resultadoEsperado,resultado[4][2], places=4)
+
         
