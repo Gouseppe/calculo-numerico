@@ -11,7 +11,7 @@ def euler(funcion, t_min, t_max, y_min, n):
     for i in range(n+1):
         t_actual = t_min + (h*i)
         y_siguiente = y_actual + (h*funcion(t_actual,y_actual)) 
-        diccionario[i] = [t_actual, y_actual,y_siguiente]
+        diccionario[i] = y_actual
         y_actual = y_siguiente
 
     return diccionario
@@ -19,5 +19,5 @@ def euler(funcion, t_min, t_max, y_min, n):
 
 
 # if __name__ == '__main__' :
-    # print(euler( fun, 2, 3, 1, 4)[4][2])
+#     print(euler( lambda t, y: 1 + (t-y)**2, 2, 3, 1, 4))
     

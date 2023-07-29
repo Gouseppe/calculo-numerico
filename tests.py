@@ -94,8 +94,10 @@ class Tests(unittest.TestCase):
         resultado = suma_riemann(lambda x: x * sp.cos(x**2),0,1,5)
         self.assertAlmostEqual(resultadoEsperado,resultado, places=4)
     def test1_euler(self):
-        resultadoEsperado = 2.8508
+        resultadoEsperado = 2.5502
         resultado = euler(lambda t, y: 1 + (t-y)**2, 2, 3, 1, 4)   
-        self.assertAlmostEqual(resultadoEsperado,resultado[4][2], places=4)
+        self.assertAlmostEqual(resultadoEsperado,resultado[4], places=4)
 
         
+# if __name__ == "__main__":
+#     unittest.main()
